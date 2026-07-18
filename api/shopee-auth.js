@@ -25,6 +25,13 @@ const baseString = `${partnerId}${path}${timestamp}`;
         `&sign=${sign}` +
         `&redirect=${encodeURIComponent(redirect)}`;
 
-    res.redirect(url);
+res.status(200).json({
+    partnerId,
+    timestamp,
+    path,
+    baseString,
+    sign,
+    url
+});
 
 }
