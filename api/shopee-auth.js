@@ -1,15 +1,28 @@
-import { generateSignature } from "./lib/shopee-sign.js";
+import crypto from "crypto";
 
 export default function handler(req, res) {
 
-    const signature = generateSignature("LUNA_TEST");
+    const partnerId = process.env.SHOPEE_PARTNER_ID;
+    const partnerKey = process.env.SHOPEE_PARTNER_KEY;
 
-    res.status(200).json({
+    const redirect = "https://lunastocksync.vercel.app/auth/callback";
 
-        success: true,
+    const timestamp = Math.floor(Date.now() / 1000);
 
-        signature
+    const baseString = `${partnerId}${req.path}${timestamp}`;
 
-    });
+    const sign = crypto
+        .createHmac("sha256", partnerKey)
+        .update(baseString)
+        .digest("hex");
+
+    const url =
+        `https://partner.shopeemobile.com/api/v2/shop/auth_partner` +
+        `?partner_id=${partnerId}` +
+        `&timestamp=${timestamp}` +
+        `&sign=${sign}` +
+        `&redirect=${encodeURIComponent(redirect)}`;
+
+    res.redirect(url);
 
 }
