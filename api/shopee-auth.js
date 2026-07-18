@@ -1,14 +1,14 @@
+import { generateSignature } from "./lib/shopee-sign";
+
 export default function handler(req, res) {
+
+    const signature = generateSignature("LUNA_TEST");
 
     res.status(200).json({
 
         success: true,
 
-        partnerId: process.env.SHOPEE_PARTNER_ID,
-
-        partnerKey: process.env.SHOPEE_PARTNER_KEY
-            ? "FOUND"
-            : "NOT FOUND"
+        signature
 
     });
 
