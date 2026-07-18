@@ -3,7 +3,7 @@ import crypto from "crypto";
 export default function handler(req, res) {
 
     const partnerId = Number(process.env.SHOPEE_PARTNER_ID);
-    const partnerKey = process.env.SHOPEE_PARTNER_KEY;
+    const partnerKey = process.env.SHOPEE_PARTNER_KEY.replace(/^shpk/, "");
 
     const redirect = "https://lunastocksync.vercel.app/auth/callback";
 
