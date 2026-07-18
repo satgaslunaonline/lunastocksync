@@ -9,7 +9,9 @@ export default function handler(req, res) {
 
     const timestamp = Math.floor(Date.now() / 1000);
 
-    const baseString = `${partnerId}${req.path}${timestamp}`;
+const path = "/api/v2/shop/auth_partner";
+
+const baseString = `${partnerId}${path}${timestamp}`;
 
     const sign = crypto
         .createHmac("sha256", partnerKey)
