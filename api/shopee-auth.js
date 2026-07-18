@@ -1,4 +1,4 @@
-import { generateSignature } from "./lib/shopee-sign";
+import { generateSignature } from "./lib/shopee-sign.js";
 
 export default function handler(req, res) {
 
