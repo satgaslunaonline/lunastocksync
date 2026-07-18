@@ -4,7 +4,7 @@ export default function handler(req, res) {
 
         success: true,
 
-        message: "Shopee Auth Endpoint Ready"
+        partnerId: process.env.SHOPEE_PARTNER_ID
 
     });
 
