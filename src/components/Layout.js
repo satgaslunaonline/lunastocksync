@@ -23,39 +23,31 @@ export function Layout(content){
     <aside class="sidebar">
 
         <button data-page="dashboard">
-
             Dashboard
-
         </button>
 
         <button data-page="upload">
-
             Upload
+        </button>
 
+        <button data-page="shopee-products">
+            Shopee Products
         </button>
 
         <button data-page="queue">
-
             Queue
-
         </button>
 
         <button data-page="history">
-
             History
-
         </button>
 
         <button data-page="mapping">
-
             Mapping
-
         </button>
 
         <button data-page="settings">
-
             Settings
-
         </button>
 
     </aside>
