@@ -6,7 +6,7 @@ export default async function handler(req, res) {
     const partnerKey = process.env.SHOPEE_PARTNER_KEY;
 
     const accessToken =
-        "ISI_ACCESS_TOKEN";
+        "784a4c6d7647635672594b5575614269";
 
     const shopId =
         304158815;
