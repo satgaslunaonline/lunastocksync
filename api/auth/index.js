@@ -6,7 +6,7 @@ export default function handler(req, res) {
     const partnerKey = process.env.SHOPEE_PARTNER_KEY;
 
     const redirect =
-        "https://lunastocksync.vercel.app/auth/callback";
+        "https://lunastocksync.vercel.app/api/auth/callback";
 
     const path = "/api/v2/shop/auth_partner";
 
