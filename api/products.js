@@ -21,15 +21,16 @@ export default async function handler(req, res) {
         .update(baseString)
         .digest("hex");
 
-    const url =
-        `https://partner.shopeemobile.com${path}` +
-        `?partner_id=${partnerId}` +
-        `&timestamp=${timestamp}` +
-        `&access_token=${accessToken}` +
-        `&shop_id=${shopId}` +
-        `&sign=${sign}` +
-        `&offset=0` +
-        `&page_size=20`;
+const url =
+    `https://partner.shopeemobile.com${path}` +
+    `?partner_id=${partnerId}` +
+    `&timestamp=${timestamp}` +
+    `&access_token=${accessToken}` +
+    `&shop_id=${shopId}` +
+    `&sign=${sign}` +
+    `&offset=0` +
+    `&page_size=20` +
+    `&item_status=NORMAL`;
 
     const response = await fetch(url);
 
