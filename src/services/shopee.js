@@ -1,10 +1,25 @@
 export async function getProducts() {
 
-    const response = await fetch("/api/products");
+    const response =
+        await fetch("/api/products");
 
-    if (!response.ok) {
-        throw new Error("Gagal mengambil produk Shopee");
-    }
+    return await response.json();
+
+}
+
+export async function getProductDetail(itemId) {
+
+    const response =
+        await fetch(`/api/product-detail?item_id=${itemId}`);
+
+    return await response.json();
+
+}
+
+export async function getModels(itemId) {
+
+    const response =
+        await fetch(`/api/models?item_id=${itemId}`);
 
     return await response.json();
 

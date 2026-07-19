@@ -21,8 +21,17 @@ export default async function handler(req, res) {
         .digest("hex");
 
     // sementara satu item dulu
-    const itemIds =
-        "49614058259";
+    const itemIds = req.query.item_id;
+
+if (!itemIds) {
+
+    return res.status(400).json({
+
+        error: "item_id wajib diisi"
+
+    });
+
+}
 
     const url =
         `https://partner.shopeemobile.com${path}`+

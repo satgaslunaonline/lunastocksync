@@ -8,7 +8,17 @@ export default async function handler(req, res) {
     const accessToken = "784a4c6d7647635672594b5575614269";
     const shopId = 304158815;
 
-    const itemId = 49614058259;
+    const itemId = req.query.item_id;
+
+if (!itemId) {
+
+    return res.status(400).json({
+
+        error: "item_id wajib diisi"
+
+    });
+
+}
 
     const path = "/api/v2/product/get_model_list";
 
