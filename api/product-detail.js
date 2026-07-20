@@ -1,5 +1,6 @@
 import crypto from "crypto";
 import { getShopeeAuth } from "./lib/auth.js";
+import { getModelList } from "./lib/products.js";
 
 export default async function handler(req, res) {
 
@@ -38,6 +39,10 @@ if (!itemIds) {
     });
 
 }
+
+const modelResponse = await getModelList(itemIds);
+
+return res.status(200).json(modelResponse);
 
     const url =
         `https://partner.shopeemobile.com${path}`+

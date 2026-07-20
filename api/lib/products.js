@@ -99,6 +99,31 @@ query: {
 
 }
 
+export async function getModelList(itemId) {
+
+    const {
+        accessToken,
+        shopId
+    } = await getShopeeAuth();
+
+    return await shopeeRequest({
+
+        path: "/api/v2/product/get_model_list",
+
+        accessToken,
+
+        shopId,
+
+        query: {
+
+            item_id: itemId
+
+        }
+
+    });
+
+}
+
 export async function getAllProducts() {
 
     const items = await getAllItemIds();
