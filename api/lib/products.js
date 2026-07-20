@@ -70,9 +70,18 @@ export async function getItemBaseInfo(itemIds) {
 
     }
 
+    const {
+        accessToken,
+        shopId
+    } = await getShopeeAuth();
+
     return await shopeeRequest({
 
         path: "/api/v2/product/get_item_base_info",
+
+        accessToken,
+
+        shopId,
 
         query: {
 
