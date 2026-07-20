@@ -58,7 +58,11 @@ if (!data.error && data.access_token) {
 
             refreshToken: data.refresh_token,
 
-            expireIn: data.expire_in,
+expireIn: data.expire_in,
+
+expiredAt:
+    Date.now() +
+    (data.expire_in * 1000),
 
             shopId: data.shop_id_list?.[0] ?? Number(shop_id),
 
