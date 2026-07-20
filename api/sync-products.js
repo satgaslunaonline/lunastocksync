@@ -1,3 +1,5 @@
+console.log("START sync");
+
 import { db } from "./lib/firebase-admin.js";
 import {
     getAllProducts,
@@ -9,11 +11,17 @@ export default async function handler(req, res) {
 
     const products = await getAllProducts();
 
+    console.log("Total products:", products.length);
+
 const batch = db.batch();
 
 for (const product of products) {
 
+    console.log("Processing:", product.item_id);
+
     const detail = await getModelList(product.item_id);
+
+    console.log("Finished:", product.item_id);
 
     console.log(
         product.item_name,
@@ -39,6 +47,8 @@ batch.set(ref, {
 }
 
 await batch.commit();
+
+console.log("Batch committed");
 
     res.status(200).json({
 
