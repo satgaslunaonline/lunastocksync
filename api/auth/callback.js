@@ -1,4 +1,5 @@
 import crypto from "crypto";
+import { db } from "../lib/firebase-admin.js";
 
 export default async function handler(req, res) {
   try {
@@ -44,9 +45,30 @@ export default async function handler(req, res) {
       })
     });
 
-    const data = await response.json();
+const data = await response.json();
 
-    return res.status(200).json(data);
+if (!data.error && data.access_token) {
+
+    await db
+        .collection("settings")
+        .doc("shopee")
+        .set({
+
+            accessToken: data.access_token,
+
+            refreshToken: data.refresh_token,
+
+            expireIn: data.expire_in,
+
+            shopId: data.shop_id_list?.[0] ?? Number(shop_id),
+
+            updatedAt: new Date()
+
+        });
+
+}
+
+return res.status(200).json(data);
 
   } catch (err) {
 
