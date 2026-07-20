@@ -1,12 +1,18 @@
 import crypto from "crypto";
+import { getShopeeAuth } from "./lib/auth.js";
 
 export default async function handler(req, res) {
 
     const partnerId = process.env.SHOPEE_PARTNER_ID;
     const partnerKey = process.env.SHOPEE_PARTNER_KEY;
 
-    const accessToken = "784a4c6d7647635672594b5575614269";
-    const shopId = 304158815;
+const {
+
+    accessToken,
+
+    shopId
+
+} = await getShopeeAuth();
 
     const path = "/api/v2/product/get_item_base_info";
 

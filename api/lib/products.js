@@ -32,3 +32,32 @@ export async function getItemList(
     });
 
 }
+
+export async function getAllItemIds() {
+
+    let offset = 0;
+
+    const pageSize = 100;
+
+    let items = [];
+
+    while (true) {
+
+        const response =
+            await getItemList(offset, pageSize);
+
+        items.push(...response.response.item);
+
+        if (!response.response.has_next_page) {
+
+            break;
+
+        }
+
+        offset = response.response.next_offset;
+
+    }
+
+    return items;
+
+}
