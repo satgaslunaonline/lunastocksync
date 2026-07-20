@@ -1,15 +1,23 @@
 import { shopeeRequest } from "./request.js";
-
-const accessToken =
-    "784a4c6d7647635672594b5575614269";
-
-const shopId =
-    304158815;
+import { db } from "./firebase-admin.js";
 
 export async function getItemList(
     offset = 0,
     pageSize = 20
 ) {
+
+    const doc = await db
+        .collection("settings")
+        .doc("shopee")
+        .get();
+
+    const {
+
+        accessToken,
+
+        shopId
+
+    } = doc.data();
 
     return await shopeeRequest({
 
