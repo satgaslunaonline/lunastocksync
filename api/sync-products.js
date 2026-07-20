@@ -1,5 +1,8 @@
 import { db } from "./lib/firebase-admin.js";
-import { getAllProducts } from "./lib/products.js";
+import {
+    getAllProducts,
+    getModelList
+} from "./lib/products.js";
 import { FieldValue } from "firebase-admin/firestore";
 
 export default async function handler(req, res) {
@@ -10,16 +13,16 @@ const batch = db.batch();
 
 for (const product of products) {
 
+    const detail = await getModelList(product.item_id);
+
+    console.log(
+        product.item_name,
+        detail.response?.model?.length
+    );
+
     const ref = db
         .collection("shopee_products")
         .doc(String(product.item_id));
-
-const detail = await getModelList(product.item_id);
-
-console.log(
-    product.item_name,
-    detail.response?.model?.length
-);
 
     batch.set(ref, {
 
