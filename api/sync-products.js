@@ -9,7 +9,15 @@ import { FieldValue } from "firebase-admin/firestore";
 
 export default async function handler(req, res) {
 
-    const products = await getAllProducts();
+const products = await getAllProducts();
+
+const offset = Number(req.query.offset || 0);
+const limit = 20;
+
+const pageProducts = products.slice(
+    offset,
+    offset + limit
+);
 
     const testProducts = products.slice(0, 5);
 
@@ -17,7 +25,7 @@ export default async function handler(req, res) {
 
 const batch = db.batch();
 
-for (const product of testProducts) {
+for (const product of pageProducts) {
 
     console.log("Processing:", product.item_id);
 
@@ -52,9 +60,20 @@ await batch.commit();
 
 console.log("Batch committed");
 
+const nextOffset = offset + pageProducts.length;
+
 res.status(200).json({
+
     success: true,
-    total: testProducts.length
+
+    processed: pageProducts.length,
+
+    nextOffset,
+
+    finished: nextOffset >= products.length,
+
+    totalProducts: products.length
+
 });
 
 }
