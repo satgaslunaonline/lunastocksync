@@ -1,16 +1,16 @@
-import { getAllItemIds } from "./lib/products.js";
+import { getAllProducts } from "./lib/products.js";
 
 export default async function handler(req, res) {
 
     try {
 
-        const items = await getAllItemIds();
+        const products = await getAllProducts();
 
         res.status(200).json({
 
-            total: items.length,
+            total: products.length,
 
-            items
+            products
 
         });
 

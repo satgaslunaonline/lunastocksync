@@ -61,3 +61,54 @@ export async function getAllItemIds() {
     return items;
 
 }
+
+export async function getItemBaseInfo(itemIds) {
+
+    if (!Array.isArray(itemIds)) {
+
+        itemIds = [itemIds];
+
+    }
+
+    return await shopeeRequest({
+
+        path: "/api/v2/product/get_item_base_info",
+
+        query: {
+
+            item_id_list: itemIds.join(",")
+
+        }
+
+    });
+
+}
+
+export async function getAllProducts() {
+
+    const items = await getAllItemIds();
+
+    const ids = items.map(item => item.item_id);
+
+    let products = [];
+
+    for (let i = 0; i < ids.length; i += 50) {
+
+        const batch = ids.slice(i, i + 50);
+
+        const response =
+            await getItemBaseInfo(batch);
+
+        if (response.response?.item_list) {
+
+            products.push(
+                ...response.response.item_list
+            );
+
+        }
+
+    }
+
+    return products;
+
+}
