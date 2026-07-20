@@ -99,6 +99,8 @@ export async function getAllProducts() {
         const response =
             await getItemBaseInfo(batch);
 
+        console.log(JSON.stringify(response, null, 2));
+
         if (response.response?.item_list) {
 
             products.push(
