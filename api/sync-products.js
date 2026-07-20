@@ -6,20 +6,20 @@ export default async function handler(req, res) {
 
     const products = await getAllProducts();
 
-    if (products.length > 0) {
+for (const product of products) {
 
-        await db
-            .collection("shopee_products")
-            .doc(String(products[0].item_id))
-            .set({
+    await db
+        .collection("shopee_products")
+        .doc(String(product.item_id))
+        .set({
 
-                ...products[0],
+            ...product,
 
-                updatedAt: FieldValue.serverTimestamp()
+            updatedAt: FieldValue.serverTimestamp()
 
-            });
+        });
 
-    }
+}
 
     res.status(200).json({
 
