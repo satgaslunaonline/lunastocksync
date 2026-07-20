@@ -9,7 +9,7 @@ export default async function handler(req, res) {
     if (products.length > 0) {
 
         await db
-            .collection("products")
+            .collection("shopee_products")
             .doc(String(products[0].item_id))
             .set({
 
