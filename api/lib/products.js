@@ -83,11 +83,17 @@ export async function getItemBaseInfo(itemIds) {
 
         shopId,
 
-        query: {
+query: {
 
-            item_id_list: itemIds.join(",")
+    item_id_list: itemIds.join(","),
 
-        }
+    need_complaint_policy: false,
+
+    need_tax_info: false,
+
+    need_complaint_policy: false
+
+}
 
     });
 
@@ -115,6 +121,11 @@ export async function getAllProducts() {
             products.push(
                 ...response.response.item_list
             );
+
+console.log(
+    "Produk pertama:",
+    response.response.item_list[0]
+);
 
         }
 
