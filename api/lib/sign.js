@@ -1,11 +1,5 @@
 import crypto from "crypto";
 
-const accessToken =
-    "784a4c6d7647635672594b5575614269";
-
-const shopId =
-    304158815;
-    
 export function createSignature(path, accessToken = "", shopId = "") {
 
     const partnerId = process.env.SHOPEE_PARTNER_ID;
