@@ -13,6 +13,7 @@
   },
   "dependencies": {
     "firebase": "^12.16.0",
+    "firebase-admin": "^14.2.0",
     "sweetalert2": "^11.26.25",
     "xlsx": "^0.18.5"
   }
