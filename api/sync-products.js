@@ -24,13 +24,17 @@ for (const product of products) {
         .collection("shopee_products")
         .doc(String(product.item_id));
 
-    batch.set(ref, {
+batch.set(ref, {
 
-        ...product,
+    ...product,
 
-        updatedAt: FieldValue.serverTimestamp()
+    models: detail.response?.model || [],
 
-    });
+    tierVariation: detail.response?.tier_variation || [],
+
+    updatedAt: FieldValue.serverTimestamp()
+
+});
 
 }
 
