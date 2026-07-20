@@ -69,6 +69,8 @@ const rows = await readExcel(file);
 
 const products = aggregate(rows);
 
+console.log(products);
+
 const firestoreProducts = await getProducts();
 
 const compare = compareProducts(
