@@ -11,11 +11,13 @@ export default async function handler(req, res) {
 
     const products = await getAllProducts();
 
+    const testProducts = products.slice(0, 5);
+
     console.log("Total products:", products.length);
 
 const batch = db.batch();
 
-for (const product of products) {
+for (const product of testProducts) {
 
     console.log("Processing:", product.item_id);
 
@@ -50,12 +52,9 @@ await batch.commit();
 
 console.log("Batch committed");
 
-    res.status(200).json({
-
-        success: true,
-
-        total: products.length
-
-    });
+res.status(200).json({
+    success: true,
+    total: testProducts.length
+});
 
 }
