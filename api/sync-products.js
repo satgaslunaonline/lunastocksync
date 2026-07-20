@@ -14,6 +14,13 @@ for (const product of products) {
         .collection("shopee_products")
         .doc(String(product.item_id));
 
+const detail = await getModelList(product.item_id);
+
+console.log(
+    product.item_name,
+    detail.response?.model?.length
+);
+
     batch.set(ref, {
 
         ...product,
