@@ -1,28 +1,19 @@
 import { shopeeRequest } from "./request.js";
-import { db } from "./firebase-admin.js";
+import { getShopeeAuth } from "./auth.js";
 
 export async function getItemList(
     offset = 0,
     pageSize = 20
 ) {
 
-    const doc = await db
-        .collection("settings")
-        .doc("shopee")
-        .get();
-
     const {
-
         accessToken,
-
         shopId
-
-    } = doc.data();
+    } = await getShopeeAuth();
 
     return await shopeeRequest({
 
-        path:
-            "/api/v2/product/get_item_list",
+        path: "/api/v2/product/get_item_list",
 
         accessToken,
 
