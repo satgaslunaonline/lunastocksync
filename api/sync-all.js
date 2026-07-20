@@ -1,9 +1,7 @@
+import syncProducts from "./sync-products.js";
+
 export default async function handler(req, res) {
 
-    res.status(200).json({
-
-        message: "sync-all siap"
-
-    });
+    return await syncProducts(req, res);
 
 }
